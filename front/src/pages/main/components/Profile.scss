@@ -1,0 +1,102 @@
+@import '../../../scss/mixin';
+
+.profile {
+    @include widthHeight(100%, 180px);
+    @include flex(center, space-evenly);
+    margin-bottom: 44px;
+    &Img {
+      // .profileImg
+      @include widthHeight(300px, 100%);
+      @include flex(center, center);
+      .profileImgcover {
+        @include widthHeight(160px,160px);
+        @include flex(center,center);
+        
+        img {
+          @include widthHeight(150px, 150px);
+          background-position: center;
+          background-size: 100%;
+          border-radius: 50%;
+          padding :3px;
+          border: 1px solid #dbdbdb;
+        }
+      }
+    }
+  
+    &Info {
+      // .profileInfo
+      @include widthHeight(100%, 100%);
+      @include flex(center, flex-start, column);
+  
+      .profileMain {
+        @include widthHeight(100%, auto);
+        @include flex(stretch,flex-start,row);
+        margin-bottom: 20px;
+        .nameContainer {
+          @include flex(center, center, row);
+          .profileName {
+            @include font(normal, 28px, #262626);
+            font-weight: 300;
+            line-height: 32px;
+          }
+          .confirmIcon {
+            @include widthHeight(18px, 18px);
+            background-image: url("/img/instagramIcon.png");
+            background-position: 0 -369px;
+            margin-left: 8px;
+          }
+        }
+        .followButton {
+          @include widthHeight(62px, 30px);
+          background-color: #0095f6;
+          border: 1px solid transparent;
+          border-radius: 4px;
+          @include font(normal, 14px, #fff);
+          font-weight: 600;
+          margin-left: 20px;
+          cursor: pointer;
+        }
+      }
+      .profileInfoNum {
+        @include widthHeight(100%, 70%);
+        @include flex($direction: row);
+        li {
+          margin-right: 40px;
+  
+          span {
+            color: #262626;
+            font-weight: 600;
+          }
+        }
+      }
+      .profileIntro {
+        @include widthHeight(100%, 100%);
+        @include flex($direction: column);
+        span {
+          color: #262626;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  
+  .storyWrap {
+    @include widthHeight(100%,auto);
+    @include flex(center,flex-start,row);
+    margin-bottom: 44px;
+    li {
+      @include flex(center,center, column);
+      margin-left: 30px;
+      img {
+        @include widthHeight(77px,77px);
+        border-radius: 50%;
+        padding: 3px;
+        border: 1px solid #dbdbdb;
+      }
+      span{
+        margin-top:6px;
+      }
+    }
+  }
+  
