@@ -1,1 +1,118 @@
 @import "../../../../scss/mixin";
+
+.modal3 {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  @include flex(center, center);
+
+  .modalOverlay3 {
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+  .closeBtn {
+    @include widthHeight(24px, 24px);
+    position: absolute;
+    z-index: 3;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+  }
+  .modalContent3 {
+    @include widthHeight(100%, 100%);
+    @include flex(center, center, row);
+    max-height: calc(100% - 200px);
+    max-width: 1000px;
+    background-color: #fff;
+    position: fixed;
+    z-index: 3;
+    border-radius: 0 4px 4px 0;
+    .readImg {
+      max-height: 889px;
+      max-width: 889px;
+      @include widthHeight(100%, 100%);
+      @include flex(center, center);
+      background-color: black;
+      .readImgBox {
+        @include widthHeight(100%, 55%);
+        @include flex(center, center);
+        background-size: cover;
+      }
+    }
+
+    .readContentWrap {
+      @include widthHeight(60%, 100%);
+      @include flex(center, flex-start, column);
+
+      .readProfile {
+        @include widthHeight(100%, auto);
+        @include flex(center, space-between, row);
+        padding: 16px;
+        box-sizing: border-box;
+        border-bottom: 1px solid #dbdbdb;
+        .readAccount {
+          @include flex(center, center);
+          img {
+            @include widthHeight(30px, 30px);
+            background-size: 100%;
+            border-radius: 50%;
+          }
+          span {
+            @include font(normal, 14px, #262626);
+            font-weight: 600;
+            text-align: center;
+            margin-left: 14px;
+          }
+        }
+        .selectBtn {
+          svg {
+            @include widthHeight(24px, 24px);
+            background-size: 100%;
+          }
+          cursor: pointer;
+        }
+      }
+
+      .readContent {
+        @include widthHeight(calc(100% - 32px), calc(100% - 32px));
+        @include flex();
+
+        padding: 16px;
+        .readProfileImg {
+          img {
+            @include widthHeight(30px, 30px);
+            border-radius: 50%;
+            margin-right: 18px;
+          }
+        }
+      }
+
+      .readFunc {
+        @include widthHeight(100%, auto);
+        @include flex(center, space-between, row);
+        padding: 16px;
+        box-sizing: border-box;
+        border-top: 1px solid #dbdbdb;
+        .leftIcon {
+          @include flex(center, space-evenly, row);
+          svg {
+            &:not(:last-of-type) {
+              margin-right: 10px;
+              cursor: pointer;
+            }
+          }
+        }
+        .rightIcon {
+            svg{
+                cursor: pointer;
+            }
+        }
+      }
+    }
+  }
+}

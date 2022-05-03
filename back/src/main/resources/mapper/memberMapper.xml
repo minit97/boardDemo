@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.boarddemo.mapper.memberMapper">
+    <!--회원가입-->
+    <insert id="memberJoin" parameterType="com.example.boarddemo.vo.memberVO">
+        INSERT INTO member(m_id, m_pw, m_name, m_tell, m_email, m_date)
+        VALUES(#{m_id}, #{m_pw}, #{m_name}, #{m_tell}, #{m_email},now())
+    </insert>
+</mapper>

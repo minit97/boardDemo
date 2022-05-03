@@ -32,3 +32,13 @@ a {
 input{
   border: 0;
 }
+
+textarea {
+  overflow: auto;
+  vertical-align: top;
+  resize: none;
+  border:0;
+  &:focus{
+    outline: none;
+  }
+}
