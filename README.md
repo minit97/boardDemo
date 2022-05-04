@@ -17,6 +17,6 @@
   + 회원가입기능 구현
 
 * 2022-05-04(수)
-  + Security & jwt 공부..
+  + Security & jwt 공부
   + Security Config 기본설정
-  + jwt 기본설정?
+  + jwt 기본설정
