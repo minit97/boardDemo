@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor
 public class memberRestController {
-    @Autowired
-    private memberService memService;
+
+    private final memberService memService;
 
     @PostMapping("/joinMember")
     public int joinMember(@RequestBody memberVO mem) {

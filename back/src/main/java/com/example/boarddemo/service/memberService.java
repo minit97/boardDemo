@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class memberService {
 
-    @Autowired
-    private memberMapper memMapper;
+    private final memberMapper memMapper;
 
     public int memberJoin(memberVO mem){
         return memMapper.memberJoin(mem);
