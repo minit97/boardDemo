@@ -20,3 +20,7 @@
   + Security & jwt 공부
   + Security Config 기본설정
   + jwt 기본설정
+
+* 2022-05-06(금)
+  + Security 공부 및 코드 해석
+  + 하...쉽지않다..
