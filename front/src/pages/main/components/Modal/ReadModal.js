@@ -1,8 +1,19 @@
-import React from "react";
+import React,{useState} from "react";
 
 import "./ReadModal.scss";
 import profileImg from "../../../../profileImg/1.jpg";
+import SelectModal from "./SelectModal";
+
 const ReadModal = (props) => {
+    const [selectModal, setSelectModal] = useState(false);
+    const selectModalHandler = () => {
+        if(selectModal === false){
+            setSelectModal(true);
+          }else{
+            setSelectModal(false);
+          }
+    };
+
     return(
         <div className="modal3">
             <div className="modalOverlay3"></div>
@@ -20,7 +31,8 @@ const ReadModal = (props) => {
                             <img src={profileImg} alt="" />
                             <span>뚱이</span>
                         </div>
-                        <div className="selectBtn">
+                        {selectModal && <SelectModal cancelModalHandler={selectModalHandler}/>}
+                        <div className="selectBtn" onClick={selectModalHandler}>
                             <svg aria-label="옵션 더 보기" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><circle cx="12" cy="12" r="1.5"></circle><circle cx="6" cy="12" r="1.5"></circle><circle cx="18" cy="12" r="1.5"></circle></svg>
                         </div>
                     </div>

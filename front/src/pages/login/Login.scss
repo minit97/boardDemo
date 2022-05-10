@@ -53,6 +53,12 @@ body {
         margin: 40px;
       }
     }
+    .loginFail {
+      @include widthHeight(100%,auto);
+      @include flex(center,center);
+      color: red;
+      margin-bottom: 20px;
+    }
   }
 
   .joinWrap {

@@ -1,5 +1,12 @@
 server:
   port: 8085
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  tomcat:
+    uri-encoding: UTF-8
 
 #MySQL
 spring:
@@ -9,10 +16,17 @@ spring:
     username: dndb4902
     password: 4902
 
+  # 순환종속성 제거
+  main:
+    allow-circular-references: true
+
 #MyBatis
-mybatis.mapper-locations: mapper/**/*.xml
+mybatis:
+  mapper-locations: mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: false
 
 jwt:
   header: Authorization
-  secret: test123
+  secret: 4oCYc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQtc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXTigJkK
   token-validity-in-seconds: 86400

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+
 const Join = (props) => {
   const navigate = useNavigate();
   const idRef = useRef("");
@@ -9,7 +10,7 @@ const Join = (props) => {
   const tellRef = useRef("");
   const emailRef = useRef("");
 
-  const joinHandler = (event) => {
+  const joinSubmit = (event) => {
     event.preventDefault();
 
     const joinInfo = {
@@ -20,16 +21,26 @@ const Join = (props) => {
       m_tell: tellRef.current.value,
       m_email: emailRef.current.value,
     };
-    // console.log(joinInfo);
-    if (addMember(joinInfo) === 1) {
-      navigate("/");
-    }
+
+    joinPost(joinInfo).then(result=>{
+      if(result===1){
+        navigate("/");
+      }else{
+          alert("회원가입 실패");
+      }
+    });
+
+    idRef.current.value = '';
+    pwRef.current.value = '';
+    nameRef.current.value = '';
+    tellRef.current.value = '';
+    emailRef.current.value = '';
   };
 
-  const addMember = async (joinInfo) => {
+  const joinPost = async (data) => {
     try {
-      const response = await axios.post("/joinMember", joinInfo);
-      console.log("res", response.data);
+      const response = await axios.post("/joinMember", data);
+      // console.log("res", response.data);
       return response.data;
     } catch (error) {
       console.log("error", error);
@@ -41,7 +52,7 @@ const Join = (props) => {
     <div className="loginContainer">
       <div className="loginWrap">
         <div className="logoWrap"></div>
-        <form className="formWrap" onSubmit={joinHandler}>
+        <form className="formWrap" onSubmit={joinSubmit}>
           <label className="id">
             <input type="text" placeholder="아이디를 입력하세요." ref={idRef} />
           </label>

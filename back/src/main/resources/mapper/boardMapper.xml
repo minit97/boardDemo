@@ -2,5 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.boarddemo.mapper.boardMapper">
-
+    <!--Create-->
+    <insert id="createBoard" parameterType="com.example.boarddemo.vo.boardVO">
+        INSERT INTO board(b_title, b_content, b_fileOriginName, b_fileName, b_indate, b_update, m_seq)
+        VALUES(#{b_title}, #{b_content}, #{b_fileOriginName}, #{b_fileName}, now(),now(),#{m_seq})
+    </insert>
 </mapper>

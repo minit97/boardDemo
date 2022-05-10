@@ -29,7 +29,7 @@ a {
   text-decoration: none;
 }
 
-input{
+input {
   border: 0;
 }
 
@@ -37,8 +37,20 @@ textarea {
   overflow: auto;
   vertical-align: top;
   resize: none;
-  border:0;
-  &:focus{
+  border: 0;
+  &:focus {
     outline: none;
   }
+}
+
+input[type="file"] {
+  /* 파일 필드 숨기기 */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }

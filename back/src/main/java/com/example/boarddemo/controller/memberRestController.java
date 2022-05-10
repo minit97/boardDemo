@@ -1,29 +1,24 @@
 package com.example.boarddemo.controller;
 
+import com.example.boarddemo.mapper.memberMapper;
 import com.example.boarddemo.service.memberService;
 import com.example.boarddemo.vo.memberVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
 public class memberRestController {
 
     private final memberService memService;
+    private final memberMapper memberMapper;
 
     @PostMapping("/joinMember")
     public int joinMember(@RequestBody memberVO mem) {
-        int a = memService.memberJoin(mem);
-        System.out.println(a);
-        return a;
+        int check = memService.memberJoin(mem);
+        return check;
     }
-
-    @PostMapping("/loginMember")
-    public void loginMember(){
-    }
-
 }
+

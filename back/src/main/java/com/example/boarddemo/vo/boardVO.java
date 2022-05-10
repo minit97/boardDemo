@@ -15,4 +15,5 @@ public class boardVO {
     private String b_fileName;
     private String b_indate;
     private String b_update;
+    private int m_seq;
 }
