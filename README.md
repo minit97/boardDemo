@@ -29,3 +29,6 @@
   + jwt 공부 및 로그인 성공
   + api요청시마다 필터로 토큰인증
   + create 접근 완료, 내일 파일업로드 할 것임
+
+* 2022-05-11(수)
+  + DB로그찍기 ( DB application.yml 수정 + log4jdbc.log4j2.properties 추가 + logback.xml 추가 ) 
