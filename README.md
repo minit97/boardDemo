@@ -32,3 +32,5 @@
 
 * 2022-05-11(수)
   + DB로그찍기 ( DB application.yml 수정 + log4jdbc.log4j2.properties 추가 + logback.xml 추가 ) 
+  + CRUD DB접근 및 기초틀 완성 ( 권한에 따른 접근 추가해야함 )
+  + react UI 접근 방식 생각해볼것!
