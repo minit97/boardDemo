@@ -1,6 +1,6 @@
 package com.example.boarddemo.config.auth;
 
-import com.example.boarddemo.vo.memberVO;
+import com.example.boarddemo.vo.MemberVO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +15,7 @@ import java.util.Collection;
 @AllArgsConstructor
 public class PrincipalDetails implements UserDetails {
 
-    private memberVO mem;
+    private MemberVO mem;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

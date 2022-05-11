@@ -3,8 +3,8 @@ package com.example.boarddemo.config.jwt;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.example.boarddemo.config.auth.PrincipalDetails;
-import com.example.boarddemo.mapper.memberMapper;
-import com.example.boarddemo.vo.memberVO;
+import com.example.boarddemo.mapper.MemberMapper;
+import com.example.boarddemo.vo.MemberVO;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,9 +21,9 @@ import java.io.IOException;
 // 권한이나 인증이 필요한 특정 주소를 요청했을 때 위 필터를 무조건 타게 되어있음
 // 만약에 권한이 인증이 필요한 주소가 아니라면 이 필터를 안탄다.
 public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
-    private  memberMapper memberMapper;
+    private MemberMapper memberMapper;
 
-    public JwtAuthorizationFilter(AuthenticationManager authenticationManager, memberMapper memberMapper) {
+    public JwtAuthorizationFilter(AuthenticationManager authenticationManager, MemberMapper memberMapper) {
         super(authenticationManager);
         this.memberMapper = memberMapper;
     }
@@ -37,31 +37,32 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
         System.out.println("jwtHeader : " + jwtHeader);
 
         // header가 있는 확인
-        if (jwtHeader == null || !jwtHeader.startsWith("Bearer")) {
+        if (jwtHeader == null || jwtHeader.trim().isEmpty() || !jwtHeader.startsWith("Bearer")) {
             chain.doFilter(request, response);
+        }else {
+
+            // JWT 토큰을 검증을 해서 정상적인 사용자인지 확인
+            String jwtToken = request.getHeader("Authorization").replace("Bearer ", "");
+
+            String username =
+                    JWT.require(Algorithm.HMAC512("cos")).build().verify(jwtToken).getClaim("username").asString();
+
+            // 서명이 정상적으로 됨
+            if (username != null) {
+                MemberVO mem = memberMapper.selectId(username);
+
+                PrincipalDetails principalDetails = new PrincipalDetails(mem);
+                // Jwt 토큰 서명을 통해서 서명이 정상이면 Authentication 객체를 만들어준다.
+                Authentication authentication =
+                        new UsernamePasswordAuthenticationToken(principalDetails, null, principalDetails.getAuthorities());
+
+                // 강제로 시큐리티의 세션에 접근하여 Authentication 객체를 저장.
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+
+                chain.doFilter(request, response);
+            }
+
         }
-
-        // JWT 토큰을 검증을 해서 정상적인 사용자인지 확인
-        String jwtToken = request.getHeader("Authorization").replace("Bearer ", "");
-
-        String username =
-                JWT.require(Algorithm.HMAC512("cos")).build().verify(jwtToken).getClaim("username").asString();
-
-        // 서명이 정상적으로 됨
-        if (username != null) {
-            memberVO mem = memberMapper.selectId(username);
-
-            PrincipalDetails principalDetails = new PrincipalDetails(mem);
-            // Jwt 토큰 서명을 통해서 서명이 정상이면 Authentication 객체를 만들어준다.
-            Authentication authentication =
-                    new UsernamePasswordAuthenticationToken(principalDetails,null,principalDetails.getAuthorities());
-
-            // 강제로 시큐리티의 세션에 접근하여 Authentication 객체를 저장.
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-
-            chain.doFilter(request,response);
-        }
-
     }
 
 

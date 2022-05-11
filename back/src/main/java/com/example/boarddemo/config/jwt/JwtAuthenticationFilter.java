@@ -3,9 +3,8 @@ package com.example.boarddemo.config.jwt;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.example.boarddemo.config.auth.PrincipalDetails;
-import com.example.boarddemo.vo.memberVO;
+import com.example.boarddemo.vo.MemberVO;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.jsonwebtoken.Jwt;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -44,7 +43,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
            // json데이터를 parsing해줌
            ObjectMapper om = new ObjectMapper();
-           memberVO mem = om.readValue(request.getInputStream(),memberVO.class);
+           MemberVO mem = om.readValue(request.getInputStream(), MemberVO.class);
            System.out.println("request요청 값들 :"+mem);
 
            UsernamePasswordAuthenticationToken authenticationToken =
@@ -87,8 +86,9 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         // RSA방식은 아니구 Hash암호방식
         String jwtToken = JWT.create()
                 .withSubject("cos토큰")
-                .withExpiresAt(new Date(System.currentTimeMillis()+(60000*10)))
+                .withExpiresAt(new Date(System.currentTimeMillis()+(60000*10000)))
                 .withClaim("username",principalDetails.getUsername())
+                .withClaim("m_seq", Integer.toString(principalDetails.getMem().getM_seq()))
                 .sign(Algorithm.HMAC512("cos"));
 
        response.addHeader("Authorization","Bearer "+jwtToken);

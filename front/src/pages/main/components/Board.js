@@ -1,12 +1,16 @@
 import React from "react";
 
 import "./Board.scss";
-
-import img1 from '../../../profileImg/1.jpg';
+import BoardList from "./BoardList";
+import img1 from "../../../profileImg/1.jpg";
 
 const Board = (props) => {
+  const { data ,setDelRerender} = props;
+  console.log(data);
+
   return (
     <section className="board">
+      {/* 탭 부분
       <ul className="boardOrder">
         <li className="tab active">
           <svg
@@ -133,8 +137,18 @@ const Board = (props) => {
           <span>태그됨</span>
         </li>
       </ul>
+       */}
 
       <div className="listItemContainer tab1">
+        <div className="listItem">
+          {data.map((data) => (
+            <BoardList
+              key={data.b_seq}
+              data={data}
+              setDelRerender={setDelRerender}
+            />
+          ))}
+        </div>
         <div className="listItem">
           <div className="listImg">
             <div className="innerBox">
@@ -153,7 +167,7 @@ const Board = (props) => {
           </div>
           <div className="listImg">
             <div className="innerBox">
-            <img src={img1} alt="" />
+              <img src={img1} alt="" />
               <div className="imgInfo">
                 <div className="playCount">
                   <div className="playIcon"></div>
@@ -168,54 +182,7 @@ const Board = (props) => {
           </div>
           <div className="listImg">
             <div className="innerBox">
-            <img src={img1} alt="" />
-              <div className="imgInfo">
-                <div className="playCount">
-                  <div className="playIcon"></div>
-                  3.6백만
-                </div>
-                <div className="commentCount">
-                  <div className="commentIcon"></div>
-                  9,876
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="listItem">
-          <div className="listImg">
-            <div className="innerBox">
-            <img src={img1} alt="" />
-              <div className="imgInfo">
-                <div className="playCount">
-                  <div className="playIcon"></div>
-                  3.6백만
-                </div>
-                <div className="commentCount">
-                  <div className="commentIcon"></div>
-                  9,876
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="listImg">
-            <div className="innerBox">
-            <img src={img1} alt="" />
-              <div className="imgInfo">
-                <div className="playCount">
-                  <div className="playIcon"></div>
-                  3.6백만
-                </div>
-                <div className="commentCount">
-                  <div className="commentIcon"></div>
-                  9,876
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="listImg">
-            <div className="innerBox">
-            <img src={img1} alt="" />
+              <img src={img1} alt="" />
               <div className="imgInfo">
                 <div className="playCount">
                   <div className="playIcon"></div>

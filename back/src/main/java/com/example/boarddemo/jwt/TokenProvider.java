@@ -1,6 +1,7 @@
 // 토큰의 생성, 토큰의 유효성 검증등을 담당
 package com.example.boarddemo.jwt;
 
+import com.auth0.jwt.algorithms.Algorithm;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -72,7 +73,8 @@ public class TokenProvider implements InitializingBean {
         // Token을 이용해 Claims 생성
         Claims claims = Jwts
                 .parserBuilder()
-                .setSigningKey(key)
+                .setSigningKey(String.valueOf(Algorithm.HMAC512("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz")))
+//                .setSigningKey(String.valueOf(Algorithm.HMAC512("cos")))
                 .build()
                 .parseClaimsJws(token)
                 .getBody();

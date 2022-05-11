@@ -2,30 +2,18 @@ package com.example.boarddemo.config;
 
 import com.example.boarddemo.config.jwt.JwtAuthenticationFilter;
 import com.example.boarddemo.config.jwt.JwtAuthorizationFilter;
-import com.example.boarddemo.filter.MyFilter1;
 import com.example.boarddemo.jwt.JwtAccessDeniedHandler;
 import com.example.boarddemo.jwt.JwtAuthenticationEntryPoint;
-import com.example.boarddemo.jwt.JwtSecurityConfig;
 import com.example.boarddemo.jwt.TokenProvider;
-import com.example.boarddemo.mapper.memberMapper;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.boarddemo.mapper.MemberMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-import org.springframework.stereotype.Component;
 import org.springframework.web.filter.CorsFilter;
-
-import javax.sql.DataSource;
 
 
 @Configuration
@@ -40,13 +28,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
 
     private final CorsFilter corsFilter;
-    private final memberMapper memberMapper;
+    private final MemberMapper memberMapper;
 
     public WebSecurityConfig(TokenProvider tokenProvider,
                              JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint,
                              JwtAccessDeniedHandler jwtAccessDeniedHandler,
                              CorsFilter corsFilter,
-                             memberMapper memberMapper) {
+                             MemberMapper memberMapper) {
         this.tokenProvider = tokenProvider;
         this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
         this.jwtAccessDeniedHandler = jwtAccessDeniedHandler;
