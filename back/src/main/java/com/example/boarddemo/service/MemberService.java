@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class MemberService {
@@ -23,5 +25,17 @@ public class MemberService {
         mem.setM_role("ROLE_USER");
 
         return memMapper.memberJoin(mem);
+    };
+
+    public MemberVO seletId(String m_id){
+        return memMapper.selectId(m_id);
+    }
+
+    public List<MemberVO> selectAll(){
+        return memMapper.selectAll();
+    }
+
+    public void deleteMember(int m_seq){
+      memMapper.deleteMember(m_seq);
     };
 }

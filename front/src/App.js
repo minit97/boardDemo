@@ -7,6 +7,7 @@ import Main from './pages/main/Main';
 import SelectModal from './pages/main/components/Modal/SelectModal';
 import CUModal from './pages/main/components/Modal/CUModal';
 import ReadModal from './pages/main/components/Modal/ReadModal';
+import UserListModal from './pages/main/components/Modal/UserListModal';
 function App() {
   return (
     <BrowserRouter>
@@ -17,6 +18,7 @@ function App() {
         <Route path='/modal1' element={<SelectModal />}/>
         <Route path='/modal2' element={<CUModal />}/>
         <Route path='/modal3' element={<ReadModal />}/>
+        <Route path='/modal4' element={<UserListModal />}/>
       </Routes>
     </BrowserRouter>
   );

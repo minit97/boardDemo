@@ -10,7 +10,7 @@
 
     <!--Read-->
     <select id="readBoard" resultType="com.example.boarddemo.vo.BoardVO">
-        SELECT * FROM board ORDER BY b_seq DESC
+        SELECT b.*, m.m_name FROM member m JOIN board b ON m.m_seq = b.m_seq ORDER BY b.b_seq DESC
     </select>
 
     <!--ReadDetail-->

@@ -4,7 +4,7 @@ import "./CUModal.scss";
 import profileImg from "../../../../profileImg/1.jpg";
 
 const UpdateModal = (props) => {
-  const { data, setDelRerender, updateModalHandler, selectModalHandler } = props;
+  const { data, RerenderFunc, updateModalHandler, selectModalHandler,readRerenderFunc } = props;
   const [files, setFiles] = useState("");
   const titleRef = useRef();
   const contentRef = useRef();
@@ -74,9 +74,10 @@ const UpdateModal = (props) => {
     const res = await boardCreatePost(formData);
     if (res !== null) {
       delFile();
-      selectModalHandler();
       updateModalHandler();
-      setDelRerender(true);
+      selectModalHandler();
+      readRerenderFunc();
+      RerenderFunc();
     }
   };
 

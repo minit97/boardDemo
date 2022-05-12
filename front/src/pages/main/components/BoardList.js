@@ -3,7 +3,7 @@ import "./Board.scss";
 import ReadModal from "./Modal/ReadModal";
 
 const BoardList = (props) => {
-  const { data, setDelRerender } = props;
+  const { data, RerenderFunc,userRes } = props;
   const [readModal, setReadModal] = useState(false);
 
   const readModalHandler = () => {
@@ -19,7 +19,8 @@ const BoardList = (props) => {
         <ReadModal
           cancelModalHandler={readModalHandler}
           data={data}
-          setDelRerender={setDelRerender}
+          RerenderFunc={RerenderFunc}
+          userRes={userRes}
         />
       )}
       <div className="innerBox" onClick={readModalHandler}>

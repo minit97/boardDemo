@@ -46,11 +46,11 @@
 
     .listItem {
       @include widthHeight(100%, 100%);
-      @include flex(center, space-between, row);
+      @include flex(center, flex-start, row);
       margin-bottom: 28px;
 
       .listImg {
-        width: 100%;
+        width: 31%;
         background-size: cover;
         background-position: center;
         overflow: hidden;

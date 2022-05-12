@@ -18,5 +18,13 @@
         SELECT * FROM member WHERE m_id=#{value}
     </select>
 
+    <!--유저 전체 검색-->
+    <select id="selectAll" parameterType="String" resultType="com.example.boarddemo.vo.MemberVO">
+        SELECT * FROM member
+    </select>
 
+    <!--유저삭제-->
+    <delete id="deleteMember" parameterType="int">
+        DELETE FROM member WHERE m_seq=#{value}
+    </delete>
 </mapper>

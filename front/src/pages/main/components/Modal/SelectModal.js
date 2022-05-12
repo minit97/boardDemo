@@ -5,7 +5,7 @@ import UpdateModal from "./UpdateModal";
 import "./SelectModal.scss";
 
 const SelectModal = (props) => {
-  const { selectModalHandler, data, readModalHandler, setDelRerender } = props;
+  const { selectModalHandler, data, readModalHandler, RerenderFunc, readRerenderFunc } = props;
   const [updateModal, setUpdateModal] = useState(false);
 
   const boardDelete = async (delData) => {
@@ -28,7 +28,7 @@ const SelectModal = (props) => {
     if (res !== null) {
       selectModalHandler();
       readModalHandler();
-      setDelRerender(true);
+      RerenderFunc();
     }
   };
   const updateModalHandler = () => {
@@ -50,9 +50,10 @@ const SelectModal = (props) => {
           {updateModal && (
             <UpdateModal
               data={data}
-              setDelRerender={setDelRerender}
+              RerenderFunc={RerenderFunc}
               selectModalHandler={selectModalHandler}
               updateModalHandler={updateModalHandler}
+              readRerenderFunc={readRerenderFunc}
             />
           )}
           <button className="selectBtn" onClick={updateModalHandler}>

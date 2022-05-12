@@ -2,12 +2,26 @@ import React from "react";
 
 import "./Board.scss";
 import BoardList from "./BoardList";
-import img1 from "../../../profileImg/1.jpg";
+// import img1 from "../../../profileImg/1.jpg";
 
 const Board = (props) => {
-  const { data ,setDelRerender} = props;
-  console.log(data);
+  const { data, RerenderFunc, userRes } = props;
+  let dataList1 = [];
+  let dataList2 = [];
+  // 데이터 길이에 따라 행을 만들고 0 1 2 / 3 4 5
 
+  for (let i = 0; i < data.length; i++) {
+    dataList2.push(data[i]);
+    if (i % 3 === 2) {
+      dataList1.push(dataList2);
+      dataList2 = [];
+    }
+    if (i === data.length - 1) {
+      dataList1.push(dataList2);
+      dataList2 = [];
+    }
+  }
+  
   return (
     <section className="board">
       {/* 탭 부분
@@ -140,16 +154,21 @@ const Board = (props) => {
        */}
 
       <div className="listItemContainer tab1">
+        {dataList1.map((dataList2, index) => (
+          <div key={index} className="listItem">
+            {dataList2.map((data) => (
+              <BoardList
+                key={data.b_seq}
+                data={data}
+                RerenderFunc={RerenderFunc}
+                userRes={userRes}
+              />
+            ))}
+          </div>
+        ))}
+
+        {/* 
         <div className="listItem">
-          {data.map((data) => (
-            <BoardList
-              key={data.b_seq}
-              data={data}
-              setDelRerender={setDelRerender}
-            />
-          ))}
-        </div>
-        <div className="listItem">
           <div className="listImg">
             <div className="innerBox">
               <img src={img1} alt="" />
@@ -196,6 +215,7 @@ const Board = (props) => {
             </div>
           </div>
         </div>
+ */}
       </div>
     </section>
   );

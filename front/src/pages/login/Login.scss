@@ -50,14 +50,20 @@ body {
         border-radius: 4px;
         @include font(normal, 14px, #fff);
         font-weight: 600;
-        margin: 40px;
+        margin: 10px;
+        cursor: pointer;
       }
     }
     .loginFail {
       @include widthHeight(100%,auto);
       @include flex(center,center);
       color: red;
+      margin-bottom: 10px;
+    }
+    .goMain {
+      color: #0095f6;
       margin-bottom: 20px;
+      cursor: pointer;
     }
   }
 

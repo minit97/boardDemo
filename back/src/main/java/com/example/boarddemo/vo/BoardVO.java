@@ -16,4 +16,5 @@ public class BoardVO {
     private String b_indate;
     private String b_update;
     private int m_seq;
+    private String m_name;
 }

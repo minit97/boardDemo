@@ -4,7 +4,7 @@ import "./CUModal.scss";
 import profileImg from "../../../../profileImg/1.jpg";
 
 const CUModal = (props) => {
-  const { cancelModalHandler } = props;
+  const { cancelModalHandler, userRes } = props;
   const [files, setFiles] = useState("");
   const titleRef = useRef();
   const contentRef = useRef();
@@ -31,9 +31,9 @@ const CUModal = (props) => {
     const imgEl = document.querySelector(".uploadImgBox");
     const reader = new FileReader();
 
-      reader.onload = () =>
-        (imgEl.style.backgroundImage = `url(${reader.result})`);
-      reader.readAsDataURL(files[0]);
+    reader.onload = () =>
+      (imgEl.style.backgroundImage = `url(${reader.result})`);
+    reader.readAsDataURL(files[0]);
   };
 
   useEffect(() => {
@@ -115,7 +115,7 @@ const CUModal = (props) => {
               <div className="mainContent">
                 <div className="contentProfile">
                   <img src={profileImg} alt="" />
-                  <div className="myId">뚱이</div>
+                  <div className="myId">{userRes.m_name}</div>
                 </div>
                 <div className="titleWrap">
                   <label htmlFor="title">

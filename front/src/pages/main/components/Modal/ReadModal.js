@@ -1,17 +1,35 @@
 import React, { useState } from "react";
-
 import "./ReadModal.scss";
 import profileImg from "../../../../profileImg/1.jpg";
 import SelectModal from "./SelectModal";
 
 const ReadModal = (props) => {
-  const { cancelModalHandler, data, setDelRerender } = props;
+  const { cancelModalHandler, data, RerenderFunc, userRes } = props;
   const [selectModal, setSelectModal] = useState(false);
+  const [readRerender, setReadRerender] = useState(false);
+  
+  const readRerenderFunc = () => {
+    if(readRerender===false){
+      setReadRerender(true);
+    }else{
+      setReadRerender(false);
+    }
+  }
+
+
   const selectModalHandler = () => {
-    if (selectModal === false) {
-      setSelectModal(true);
-    } else {
-      setSelectModal(false);
+    if (userRes !== undefined) {
+      if (data.m_seq === userRes.m_seq) {
+        if (selectModal === false) {
+          setSelectModal(true);
+        } else {
+          setSelectModal(false);
+        }
+      } else {
+        alert("사용자의 게시물이 아닙니다");
+      }
+    }else{
+      alert("사용자의 게시물이 아닙니다");
     }
   };
 
@@ -63,14 +81,15 @@ const ReadModal = (props) => {
           <div className="readProfile">
             <div className="readAccount">
               <img src={profileImg} alt="" />
-              <span>{data.m_seq}</span>
+              <span>{data.m_name}</span>
             </div>
             {selectModal && (
               <SelectModal
                 selectModalHandler={selectModalHandler}
                 readModalHandler={cancelModalHandler}
                 data={data}
-                setDelRerender={setDelRerender}
+                RerenderFunc={RerenderFunc}
+                readRerenderFunc={readRerenderFunc}
               />
             )}
             <div className="selectBtn" onClick={selectModalHandler}>

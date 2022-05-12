@@ -64,7 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilter(new JwtAuthenticationFilter(authenticationManager()))   // AuthenticationManager
                 .addFilter(new JwtAuthorizationFilter(authenticationManager(),memberMapper))
                 .authorizeRequests()
-                .antMatchers("/joinMember").permitAll()                       //login페이지
+                .antMatchers("/joinMember","/readBoard").permitAll()                       //login페이지
                 .anyRequest().authenticated();
 
                 /*

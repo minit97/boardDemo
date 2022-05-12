@@ -38,6 +38,10 @@ const Login = (props) => {
     }
   };
 
+  const goMainHandler = () => {
+    navigate("/main");
+  };
+
   return (
     <div className="loginContainer">
       <div className="loginWrap">
@@ -52,6 +56,7 @@ const Login = (props) => {
           <button className="loginBtn">로그인</button>
         </form>
         {!loginValidation && <div className="loginFail">로그인 실패</div>}
+        <button className="goMain" onClick={goMainHandler}>메인으로 가기</button>
       </div>
       <div className="joinWrap">
         <p className="jointext">
