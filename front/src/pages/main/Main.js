@@ -17,9 +17,9 @@ const Main = (props) => {
   const [Rerender, setRerender] = useState(false);
   const [logExist, setLogExist] = useState(false);
   const RerenderFunc = () => {
-    if(Rerender === false){
+    if (Rerender === false) {
       setRerender(true);
-    }else{
+    } else {
       setRerender(false);
     }
   };
@@ -51,6 +51,7 @@ const Main = (props) => {
       console.log("error", error);
     }
   }, []);
+
   const userInfo = useCallback(async () => {
     try {
       const response = await axios.get("/selectMember", {
@@ -66,6 +67,7 @@ const Main = (props) => {
 
   useEffect(() => {
     boardGet();
+
     if (logExist === true) {
       userInfo();
     }

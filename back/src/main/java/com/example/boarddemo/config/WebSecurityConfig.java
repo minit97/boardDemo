@@ -2,9 +2,6 @@ package com.example.boarddemo.config;
 
 import com.example.boarddemo.config.jwt.JwtAuthenticationFilter;
 import com.example.boarddemo.config.jwt.JwtAuthorizationFilter;
-import com.example.boarddemo.jwt.JwtAccessDeniedHandler;
-import com.example.boarddemo.jwt.JwtAuthenticationEntryPoint;
-import com.example.boarddemo.jwt.TokenProvider;
 import com.example.boarddemo.mapper.MemberMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,21 +20,13 @@ import org.springframework.web.filter.CorsFilter;
 // prePostEnabled = true : @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final TokenProvider tokenProvider;
-    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-    private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
 
     private final CorsFilter corsFilter;
     private final MemberMapper memberMapper;
 
-    public WebSecurityConfig(TokenProvider tokenProvider,
-                             JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint,
-                             JwtAccessDeniedHandler jwtAccessDeniedHandler,
+    public WebSecurityConfig(
                              CorsFilter corsFilter,
                              MemberMapper memberMapper) {
-        this.tokenProvider = tokenProvider;
-        this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
-        this.jwtAccessDeniedHandler = jwtAccessDeniedHandler;
         this.corsFilter = corsFilter;
         this.memberMapper = memberMapper;
     }
@@ -84,16 +73,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
-/* ----------------------------------------------------------------------------------------------------------
 
- * 용어정리
- *      Authentication : 로그인
- *      Authorization : 권한
- *
- * (JPA에 JOIN이 들어가면 복잡해짐)
- * JPA 매핑
- *      @OneToOne       ex) user-user_detail
- *      @OneToMany      ex) user-board
- *      @ManyToOne      ex) board-user
- *      @ManyToMany     ex) user-role   -> 연결해주는 맵핑 테이블 설계
- * */

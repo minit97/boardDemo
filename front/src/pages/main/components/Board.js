@@ -5,7 +5,9 @@ import BoardList from "./BoardList";
 // import img1 from "../../../profileImg/1.jpg";
 
 const Board = (props) => {
+  
   const { data, RerenderFunc, userRes } = props;
+  // console.log(data);
   let dataList1 = [];
   let dataList2 = [];
   // 데이터 길이에 따라 행을 만들고 0 1 2 / 3 4 5
@@ -21,6 +23,7 @@ const Board = (props) => {
       dataList2 = [];
     }
   }
+  // console.log(dataList1);
   
   return (
     <section className="board">

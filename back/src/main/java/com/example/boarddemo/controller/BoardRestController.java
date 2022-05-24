@@ -2,7 +2,6 @@ package com.example.boarddemo.controller;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.example.boarddemo.jwt.TokenProvider;
 import com.example.boarddemo.service.BoardService;
 import com.example.boarddemo.vo.BoardVO;
 import com.example.boarddemo.vo.MemberVO;
@@ -22,7 +21,6 @@ import java.util.Random;
 @RequiredArgsConstructor
 public class BoardRestController {
     private final BoardService boardService;
-    private final TokenProvider tokenProvider;
 
     @PostMapping("/createBoard")
     public void createBoard(@RequestHeader("Authorization") String jwtToken,
