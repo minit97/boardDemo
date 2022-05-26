@@ -11,7 +11,7 @@ const UserListModal = (props) => {
         headers: {
           Authorization:
             "Bearer " +
-            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3PthqDtgbAiLCJtX3NlcSI6IjQ3IiwiZXhwIjoxNjUyOTIyMjI0LCJ1c2VybmFtZSI6InRlc3QifQ.XsVcv4y_iTjsp9KmFBi8mxhgdKdZEp8SDXMC6I3gbSDiwE5ovPdo-MQFFn62WTXdGF7Ukqh_7vLfwGaoZK2YFg",
+            localStorage.getItem("jwtToken"),
         },
       });
       setUserList(response.data);
@@ -29,7 +29,7 @@ const UserListModal = (props) => {
         headers: {
           Authorization:
             "Bearer " +
-            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3PthqDtgbAiLCJtX3NlcSI6IjQ3IiwiZXhwIjoxNjUyOTI4MTg0LCJ1c2VybmFtZSI6InRlc3QifQ.VxDZPpjYRCMZEyql8k9_RoYWdd5w2_oOG_l5wbgBwpCGxyrfte49KWP5DENRbAuwJgV6Jf8uaC1IkJsKzO_U7g",
+            localStorage.getItem("jwtToken"),
         },
         data : userData
       });
