@@ -43,7 +43,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
             // JWT 토큰을 검증을 해서 정상적인 사용자인지 확인
             String jwtToken = request.getHeader("Authorization").replace("Bearer ", "");
-
+            System.out.println("jwtToken = " + jwtToken);
             String username =
                     JWT.require(Algorithm.HMAC512("cos")).build().verify(jwtToken).getClaim("username").asString();
 
