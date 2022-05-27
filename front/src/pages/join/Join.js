@@ -22,24 +22,24 @@ const Join = (props) => {
       m_email: emailRef.current.value,
     };
 
-    joinPost(joinInfo).then(result=>{
-      if(result===1){
+    joinPost(joinInfo).then((result) => {
+      if (result === 1) {
         navigate("/");
-      }else{
-          alert("회원가입 실패");
+      } else {
+        alert("회원가입 실패");
       }
     });
 
-    idRef.current.value = '';
-    pwRef.current.value = '';
-    nameRef.current.value = '';
-    tellRef.current.value = '';
-    emailRef.current.value = '';
+    idRef.current.value = "";
+    pwRef.current.value = "";
+    nameRef.current.value = "";
+    tellRef.current.value = "";
+    emailRef.current.value = "";
   };
 
   const joinPost = async (data) => {
     try {
-      const response = await axios.post("/joinMember", data);
+      const response = await axios.post("/member-join", data);
       // console.log("res", response.data);
       return response.data;
     } catch (error) {
@@ -47,7 +47,10 @@ const Join = (props) => {
       return 0;
     }
   };
-
+  const mainPageNav = (event) => {
+    event.preventDefault();
+    navigate("/");
+  };
   return (
     <div className="loginContainer">
       <div className="loginWrap">
@@ -74,13 +77,7 @@ const Join = (props) => {
       <div className="joinWrap">
         <p className="jointext">
           계정이 있으신가요?{" "}
-          <a
-            href="#!"
-            onClick={(event) => {
-              event.preventDefault();
-              navigate("/");
-            }}
-          >
+          <a href="#!" onClick={mainPageNav}>
             로그인
           </a>
         </p>

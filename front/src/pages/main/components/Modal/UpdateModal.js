@@ -43,7 +43,7 @@ const UpdateModal = (props) => {
 
   const boardCreatePost = async (data) => {
     try {
-      const response = await axios.put("/updateBoard", data, {
+      const response = await axios.put("/board", data, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("jwtToken"),
           "Content-Type": `multipart/form-data`,

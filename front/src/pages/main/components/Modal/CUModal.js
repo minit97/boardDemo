@@ -43,7 +43,7 @@ const CUModal = (props) => {
 
   const boardCreatePost = async (data) => {
     try {
-      const response = await axios.post("/createBoard", data, {
+      const response = await axios.post("/board", data, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("jwtToken"),
           "Content-Type": `multipart/form-data`,

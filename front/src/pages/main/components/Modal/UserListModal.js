@@ -7,7 +7,7 @@ const UserListModal = (props) => {
   const [userList, setUserList] = useState([]);
   const UserList = useCallback(async () => {
     try {
-      const response = await axios.get("/selectAll", {
+      const response = await axios.get("/members", {
         headers: {
           Authorization:
             "Bearer " +
@@ -25,7 +25,7 @@ const UserListModal = (props) => {
       m_seq: user,
     };
     try {
-      const response = await axios.delete("/deleteMember", {
+      const response = await axios.delete("/member", {
         headers: {
           Authorization:
             "Bearer " +

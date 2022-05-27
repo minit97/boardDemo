@@ -10,7 +10,7 @@ const SelectModal = (props) => {
 
   const boardDelete = async (delData) => {
     try {
-      const response = await axios.delete("/deleteBoard", {
+      const response = await axios.delete("/board", {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("jwtToken"),
         },

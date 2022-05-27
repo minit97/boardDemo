@@ -15,9 +15,6 @@ import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(securedEnabled = true,prePostEnabled = true)
-// securedEnabled = true : @Secured("ROLE_ADMIN")
-// prePostEnabled = true : @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
@@ -25,8 +22,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final MemberMapper memberMapper;
 
     public WebSecurityConfig(
-                             CorsFilter corsFilter,
-                             MemberMapper memberMapper) {
+            CorsFilter corsFilter,
+            MemberMapper memberMapper) {
         this.corsFilter = corsFilter;
         this.memberMapper = memberMapper;
     }
@@ -40,7 +37,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                //.addFilterBefore(new MyFilter1(), BasicAuthenticationFilter.class)  // BasicAuthenticationFilter전에 필터를 건다.
                 .csrf().disable()   // jwt토큰 방식을 쓰기에 필요한 설정
 
                 .sessionManagement()
@@ -51,20 +47,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin().disable()      // 폼로그인 사용X
                 .httpBasic().disable()      // Bearer 방식을 쓸거기 때문
                 .addFilter(new JwtAuthenticationFilter(authenticationManager()))   // AuthenticationManager
-                .addFilter(new JwtAuthorizationFilter(authenticationManager(),memberMapper))
+                .addFilter(new JwtAuthorizationFilter(authenticationManager(), memberMapper))
                 .authorizeRequests()
-                .antMatchers("/joinMember","/readBoard").permitAll()                       //login페이지
+                .antMatchers("/member-join", "/board-list").permitAll()                       //login페이지
                 .anyRequest().authenticated();
 
-                /*
-                .and()
-                .exceptionHandling()
-                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                .accessDeniedHandler(jwtAccessDeniedHandler)
-
-                .and()
-                .apply(new JwtSecurityConfig(tokenProvider));                  // JwtFilter를 addFilterBefore로 등록했던 JwtSecurityConfig 클래스도 적용
-                */
     }
 
 }

@@ -45,7 +45,7 @@ const Main = (props) => {
 
   const boardGet = useCallback(async () => {
     try {
-      const response = await axios.get("/readBoard");
+      const response = await axios.get("/board-list");
       setRes(response.data);
     } catch (error) {
       console.log("error", error);
@@ -54,7 +54,7 @@ const Main = (props) => {
 
   const userInfo = useCallback(async () => {
     try {
-      const response = await axios.get("/selectMember", {
+      const response = await axios.get("/member-one", {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("jwtToken"),
         },

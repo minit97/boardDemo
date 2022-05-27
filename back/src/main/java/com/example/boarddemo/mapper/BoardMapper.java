@@ -13,6 +13,7 @@ public interface BoardMapper {
     // Read
     List<BoardVO> readBoard();
     BoardVO readDetail(int b_seq);
+
     // Update
     void updateBoard(BoardVO boardVO);
 

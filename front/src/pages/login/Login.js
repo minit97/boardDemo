@@ -28,10 +28,10 @@ const Login = (props) => {
       m_pw: pwRef.current.value,
     };
 
-    const res = await loginPost(loginInfo);    
+    const res = await loginPost(loginInfo);
     if (res !== null) {
-      localStorage.setItem('jwtToken',res.replace("Bearer ",""));
-              
+      localStorage.setItem("jwtToken", res.replace("Bearer ", ""));
+
       navigate("/main");
     } else {
       setLoginValidation(false);
@@ -40,6 +40,11 @@ const Login = (props) => {
 
   const goMainHandler = () => {
     navigate("/main");
+  };
+
+  const JoinPageNav = (event) => {
+    event.preventDefault();
+    navigate("/join");
   };
 
   return (
@@ -51,23 +56,24 @@ const Login = (props) => {
             <input ref={idRef} type="text" placeholder="아이디를 입력하세요." />
           </label>
           <label className="pw">
-            <input ref={pwRef} type="password" placeholder="비밀번호" autoComplete="on"/>
+            <input
+              ref={pwRef}
+              type="password"
+              placeholder="비밀번호"
+              autoComplete="on"
+            />
           </label>
           <button className="loginBtn">로그인</button>
         </form>
         {!loginValidation && <div className="loginFail">로그인 실패</div>}
-        <button className="goMain" onClick={goMainHandler}>메인으로 가기</button>
+        <button className="goMain" onClick={goMainHandler}>
+          메인으로 가기
+        </button>
       </div>
       <div className="joinWrap">
         <p className="jointext">
           계정이 없으신가요?{" "}
-          <a
-            href="#!"
-            onClick={(event) => {
-              event.preventDefault();
-              navigate("/join");
-            }}
-          >
+          <a href="#!" onClick={JoinPageNav}>
             가입하기
           </a>
         </p>

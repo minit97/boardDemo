@@ -61,12 +61,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
            e.printStackTrace();
            System.out.println(111111);
        }
-       // 2. 정상인지 로그인 시도를 해보는 것, authenticationManager로 로그인 시도를 하면!!
-       //    PrincipalDetailsService가 호출 -> loadUserByUsername이 자동으로 실행
-
-       // 3. PrincipalDetails를 세션에 담고 ( 권한 관리를 위해서 )
-
-       // 4. JWT토큰을 만들어서 응답해주면 됨.
        return null;
     }
 
@@ -74,7 +68,11 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     // attemptAuthentication 실행 후 인증이 정상적으로 되었으면 successfulAuthentication 함수 실행
     // JWT 토큰을 만들어서 request요청한 사용자에게 JWT토큰을 response해주면 됨
     @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
+    protected void successfulAuthentication(HttpServletRequest request,
+                                            HttpServletResponse response,
+                                            FilterChain chain,
+                                            Authentication authResult)
+            throws IOException, ServletException {
         System.out.println("successfulAuthentication 실행됨 : 인증완료되었다는 뜻");
         PrincipalDetails principalDetails = (PrincipalDetails) authResult.getPrincipal();
         
