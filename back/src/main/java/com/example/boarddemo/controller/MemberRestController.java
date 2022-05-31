@@ -6,6 +6,7 @@ import com.example.boarddemo.mapper.MemberMapper;
 import com.example.boarddemo.service.MemberService;
 import com.example.boarddemo.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -7,6 +7,7 @@ import com.example.boarddemo.vo.BoardVO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,6 +20,7 @@ import java.util.Random;
 @RestController
 @RequiredArgsConstructor
 public class BoardRestController {
+
     private final BoardService boardService;
 
     @PostMapping("/board")

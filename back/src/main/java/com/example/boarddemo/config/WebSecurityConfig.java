@@ -3,6 +3,8 @@ package com.example.boarddemo.config;
 import com.example.boarddemo.config.jwt.JwtAuthenticationFilter;
 import com.example.boarddemo.config.jwt.JwtAuthorizationFilter;
 import com.example.boarddemo.mapper.MemberMapper;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,18 +17,13 @@ import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     private final CorsFilter corsFilter;
     private final MemberMapper memberMapper;
 
-    public WebSecurityConfig(
-            CorsFilter corsFilter,
-            MemberMapper memberMapper) {
-        this.corsFilter = corsFilter;
-        this.memberMapper = memberMapper;
-    }
 
     // 패스워드 인코더
     @Bean

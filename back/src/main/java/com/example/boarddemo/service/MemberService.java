@@ -6,6 +6,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.example.boarddemo.mapper.MemberMapper;
 import com.example.boarddemo.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
