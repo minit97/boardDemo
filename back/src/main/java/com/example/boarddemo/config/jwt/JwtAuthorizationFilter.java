@@ -50,7 +50,6 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
             // 서명이 정상적으로 됨
             if (username != null) {
                 MemberVO mem = memberMapper.selectId(username);
-
                 PrincipalDetails principalDetails = new PrincipalDetails(mem);
                 // Jwt 토큰 서명을 통해서 서명이 정상이면 Authentication 객체를 만들어준다.
                 Authentication authentication =

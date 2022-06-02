@@ -48,7 +48,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/member-join", "/board-list").permitAll()                       //login페이지
                 .anyRequest().authenticated();
-
     }
 
 }
