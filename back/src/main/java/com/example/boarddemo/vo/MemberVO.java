@@ -23,6 +23,4 @@ public class MemberVO {
     private String m_date;
     private Boolean m_enabled;
     private String m_role;
-
-
 }

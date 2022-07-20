@@ -3,15 +3,13 @@ import axios from "axios";
 import "./UserListModal.scss";
 
 const UserListModal = (props) => {
-    const {UserListModalHandler} = props;
+  const { UserListModalHandler } = props;
   const [userList, setUserList] = useState([]);
   const UserList = useCallback(async () => {
     try {
       const response = await axios.get("/members", {
         headers: {
-          Authorization:
-            "Bearer " +
-            localStorage.getItem("jwtToken"),
+          Authorization: "Bearer " + localStorage.getItem("jwtToken"),
         },
       });
       setUserList(response.data);
@@ -20,25 +18,26 @@ const UserListModal = (props) => {
     }
   }, []);
 
-  const deleteUser = useCallback(async (user) => {
-    const userData = {
-      m_seq: user,
-    };
-    try {
-      const response = await axios.delete("/member", {
-        headers: {
-          Authorization:
-            "Bearer " +
-            localStorage.getItem("jwtToken"),
-        },
-        data : userData
-      });
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-    UserList();
-  }, [UserList]);
+  const deleteUser = useCallback(
+    async (user) => {
+      const userData = {
+        m_seq: user,
+      };
+      try {
+        const response = await axios.delete("/member", {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("jwtToken"),
+          },
+          data: userData,
+        });
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+      UserList();
+    },
+    [UserList]
+  );
 
   useEffect(() => {
     UserList();
