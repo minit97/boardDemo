@@ -14,7 +14,7 @@ spring:
     url: jdbc:log4jdbc:mysql://127.0.0.1:3306/boarddemo
     driverClassName : net.sf.log4jdbc.sql.jdbcapi.DriverSpy
 #    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: dndb4902
+    username: 
     password: 4902
 
   # 순환종속성 제거
